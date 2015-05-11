@@ -16,6 +16,13 @@
                 $('#count').html(data.count);
                 console.log(data.count);
             });
+            $('#reset').click(function(){
+                socket.emit('reset_counter');
+            });
+            socket.on('counter_null', function(data){
+                $('#count').html(data.count);
+                console.log(data.count);
+            });
         });
     </script>
 </head>

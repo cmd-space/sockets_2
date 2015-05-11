@@ -25,8 +25,13 @@ io.sockets.on('connection', function(socket){
     io.emit('count_increased', {count: counter});
     socket.on('increase_count', function(){
         counter += 1;
-//        io.emit('count_increased', {count: counter});
+        io.emit('count_increased', {count: counter});
         console.log(counter);
+        return counter;
+    });
+    socket.on('reset_counter', function(){
+        counter = 0;
+        io.emit('counter_null', {count: counter});
         return counter;
     });
 });
