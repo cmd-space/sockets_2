@@ -17,7 +17,16 @@ var server = app.listen(8000, function(){
 
 var io = require('socket.io').listen(server);
 
+var counter = 0;
+
 io.sockets.on('connection', function(socket){
     console.log('Using sockets!');
     console.log(socket.id);
+    io.emit('count_increased', {count: counter});
+    socket.on('increase_count', function(){
+        counter += 1;
+//        io.emit('count_increased', {count: counter});
+        console.log(counter);
+        return counter;
+    });
 });
